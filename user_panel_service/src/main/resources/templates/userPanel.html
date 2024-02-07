@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>M&K GYM - USER PANEL</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{http://localhost:8080/up/home}">M&K GYM</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="width: 25%;">
+            <ul class="navbar-nav me-auto mb-3 mb-lg-0">
+                <li class="nav-item" th:if="${user.getRoleName() == 'ADMIN'}">
+                    <a class="nav-link active" aria-current="page" th:href="@{http://localhost:8080/up/users}">Users List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{http://localhost:8080/cs/clubs}">Clubs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{http://localhost:8080/ps/passes?id=0}">Passes</a>
+                </li>
+            </ul>
+        </div>
+        <div class="container-fluid d-flex justify-content-end">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{http://localhost:8080/lr/logout}" style="margin-right: 35px;">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div th:if="${param.successCancel}">
+        <div class="alert alert-info">You've successfully canceled Your pass!</div>
+    </div>
+    <br>
+    <div class="row col-md-10">
+        <h2>Information about your account</h2>
+    </div>
+    <div class="col-md-4">
+        <table class="table table-bordered table-hover" >
+            <thead class="table-light">
+            <tr>
+                <th>Name</th>
+                <td th:text="${user.getName()}"></td>
+            </tr>
+            <tr>
+                <th>Surname</th>
+                <td th:text="${user.getSurname()}"></td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td th:text="${user.getAddress()}"></td>
+            </tr>
+            <tr>
+                <th>Sex</th>
+                <td th:text="${user.getSex()}"></td>
+            </tr>
+            <tr>
+                <th>Birth Date</th>
+                <td th:text="${#dates.format(user.birthDate, 'dd-MM-yyyy')}"></td>
+            </tr>
+            <tr>
+                <th>Login</th>
+                <td th:text="${user.getLogin()}"></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td th:text="${user.getEmail()}"></td>
+            </tr>
+            <tr th:if="${user.getClubNumber()!=null}">
+                <th>Club:</th>
+                <td>
+                    <button type="button" class="btn btn-info" onclick="toggleDetails('class')">See details</button>
+                </td>
+            </tr>
+            <tr th:if="${user.getClubNumber()!=null}" class="class" style="display: none;">
+                <th></th>
+                <td>
+                    <span style="font-weight: bold;">Name: </span>
+                    <span th:text="${club.getName()}"></span>
+                </td>
+            </tr>
+            <tr th:if="${user.getClubNumber()!=null}" class="class" style="display: none;">
+                <th></th>
+                <td>
+                    <span style="font-weight: bold;">Address: </span>
+                    <span th:text="${club.getAddress()}"></span>
+                </td>
+            </tr>
+            <tr th:if="${user.getClubNumber()!=null}" class="class" style="display: none;">
+                <th></th>
+                <td>
+                    <span style="font-weight: bold;">Open hours:</span>
+                    <span th:text="${club.getOpenHours()}"></span>
+                </td>
+            </tr>
+            <tr th:if="${user.getClubNumber()!=null}" class="class" style="display: none;">
+                <th></th>
+                <td>
+                    <a class="btn btn-secondary" th:href="@{http://localhost:8080/cs/clubPanel(id=${club.getId()})}">See more about club</a>
+                </td>
+            </tr>
+            <tr th:if="${user.getPassNumber()!=null}">
+                <th>Pass:</th>
+                <td>
+                    <button type="button" class="btn btn-info" onclick="toggleDetails('class1')">See details</button>
+                    <a class="btn btn-danger" th:href="@{http://localhost:8080/up/cancelPass}">Cancel pass</a>
+                </td>
+            </tr>
+            <tr th:if="${user.getPassNumber()!=null}" class="class1" style="display: none;">
+                <th></th>
+                <td>
+                    <span style="font-weight: bold;">Name: </span>
+                    <span th:text="${pass.getName()}"></span>
+                </td>
+            </tr>
+            <tr th:if="${user.getPassNumber()!=null}" class="class1" style="display: none;">
+                <th></th>
+                <td>
+                    <span style="font-weight: bold;">Number of entries: </span>
+                    <span th:if ="${pass.getEntryNumber()!=0}" th:text="${pass.getEntryNumber()}"></span>
+                    <span th:if ="${pass.getEntryNumber()==0}"> Unlimited</span>
+                </td>
+            </tr>
+            <tr th:if="${user.getPassNumber()!=null}" class="class1" style="display: none;">
+                <th></th>
+                <td>
+                    <span style="font-weight: bold;">Number of available clubs:</span>
+                    <span th:if ="${pass.getAvailableClubsNumber()!=0}" th:text="${pass.getAvailableClubsNumber()}"></span>
+                    <span th:if ="${pass.getAvailableClubsNumber()==0}">All clubs</span>
+                </td>
+            </tr>
+            <tr th:if="${user.getPassNumber()!=null}" class="class1" style="display: none;">
+                <th></th>
+                <td>
+                    <span style="font-weight: bold;">Price:</span>
+                    <span th:text="${pass.getPrice()}+' zł'"></span>
+                </td>
+            </tr>
+            <tr th:if="${user.getPassNumber()!=null}" class="class1" style="display: none;">
+                <th></th>
+                <td>
+                    <a class="btn btn-secondary" th:href="@{http://localhost:8080/ps/passes(id=${pass.getId()})}">See more about pass</a>
+                </td>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div>
+        <a class="btn btn-primary" th:href="@{http://localhost:8080/up/changePassword}">Change password</a>
+        <a class="btn btn-success" th:href="@{http://localhost:8080/up/editAccount}">Edit Your Account</a>
+        <a class="btn btn-danger" th:href="@{http://localhost:8080/up/deleteAccount}">Delete account</a>
+    </div>
+</div>
+<script>
+    function toggleDetails(className) {
+        var details = document.getElementsByClassName(className);
+        for (var i = 0; i < details.length; i++) {
+            if (details[i].style.display === "none") {
+                details[i].style.display = "table-row";
+            } else {
+                details[i].style.display = "none";
+            }
+        }
+    }
+</script>
+</body>
+</html>

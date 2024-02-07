@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/club_service" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/club_service" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/eureka_service" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/eureka_service" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/gatewayService" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/gatewayService" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/login_and_register_service" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/login_and_register_service" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/pass_service" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/pass_service" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/user_panel_service" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/user_panel_service" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

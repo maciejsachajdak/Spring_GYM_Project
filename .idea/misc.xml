@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/backup_service" />
+    <file type="web" url="file://$PROJECT_DIR$/base_domains/base_domains" />
+    <file type="web" url="file://$PROJECT_DIR$/club_service" />
+    <file type="web" url="file://$PROJECT_DIR$/club_service/club_service" />
+    <file type="web" url="file://$PROJECT_DIR$/eureka_service" />
+    <file type="web" url="file://$PROJECT_DIR$/eureka_service/eureka_service" />
+    <file type="web" url="file://$PROJECT_DIR$/gatewayService" />
+    <file type="web" url="file://$PROJECT_DIR$/gatewayService/gatewayService" />
+    <file type="web" url="file://$PROJECT_DIR$/login_and_register_service" />
+    <file type="web" url="file://$PROJECT_DIR$/login_and_register_service/login_and_register_service" />
+    <file type="web" url="file://$PROJECT_DIR$/pass_service" />
+    <file type="web" url="file://$PROJECT_DIR$/pass_service/pass_service" />
+    <file type="web" url="file://$PROJECT_DIR$/user_panel_service" />
+    <file type="web" url="file://$PROJECT_DIR$/user_panel_service/user_panel_service" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

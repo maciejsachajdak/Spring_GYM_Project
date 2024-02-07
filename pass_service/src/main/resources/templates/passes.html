@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Passes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+</head>
+<body style="display: flex; flex-direction: column; height: 100vh; margin: 0;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{http://localhost:8080/up/home}">M&K GYM</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="width: 25%;">
+            <ul class="navbar-nav me-auto mb-3 mb-lg-0">
+                <li class="nav-item" th:if="${#strings.equals(user.getRoleName(), 'ADMIN')}">
+                    <a th:class="${#strings.equals(currentPath, '/up/users')} ? 'btn btn-primary' : 'nav-link active'"
+                       th:style="${#strings.equals(currentPath, '/up/users')} ?
+                       'background-color: white; color: black; border: 1px solid black;'"
+                       th:href="@{http://localhost:8080/up/users}">Users List</a>
+                </li>
+                <li class="nav-item">
+                    <a th:class="${#strings.equals(currentPath, '/cs/clubs')} ? 'btn btn-primary' : 'nav-link active'"
+                       th:style="${#strings.equals(currentPath, '/cs/clubs')} ?
+                       'background-color: white; color: black; border: 1px solid black;'"
+                       th:href="@{http://localhost:8080/cs/clubs}">Clubs</a>
+                </li>
+                <li class="nav-item">
+                    <a th:class="${#strings.equals(currentPath, '/ps/passes')} ? 'btn btn-primary' : 'nav-link active'"
+                       th:style="${#strings.equals(currentPath, '/ps/passes')} ?
+                       'background-color: white; color: black; border: 1px solid black;'"
+                       th:href="@{http://localhost:8080/ps/passes?id=0}">Passes</a>
+                </li>
+            </ul>
+        </div>
+        <div class="container-fluid d-flex justify-content-end">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{http://localhost:8080/lr/logout}"
+                       style="margin-right: 35px;">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <a class="navbar-brand" th:href="@{http://localhost:8080/up/userPanel}"
+           th:text="'Hello ' + ${user.getName()}"></a>
+    </div>
+</nav>
+<a th:href="@{http://localhost:8080/up/home}" class="nav-link active" aria-current="page">Go Back</a>
+<div th:if="${param.success}">
+    <div class="alert alert-success" style="text-align: center">You've successfully bought this pass!</div>
+</div>
+<div style="height: 100%; width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    <div style="height: 75%; width: 60%; background-color: #d4d4d4; border-radius: 10px; display: flex; margin-top: -50px">
+        <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+            <img id="passImage" th:src="${passes.get(id).getImgUrl()}"
+                 style="width: 80%; height: 90%; border-radius: 7px;"/>
+        </div>
+        <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+            <div>
+                <h3 style="font-weight: bold;" id="passName" th:text="${passes.get(id).getName()}"></h3>
+                <div id="passDescription" th:text="${passes.get(id).getDescription()}"
+                     style="font-size: 24px;"></div>
+                <br>
+                <div style="font-size: 24px; font-weight: bold;">
+                    Price: <span id="passPrice" style="font-style: italic;"
+                                 th:text="' ' + ${passes.get(id).getPrice()} + 'zł.'"></span>
+                </div>
+                <div style="font-size: 24px; font-weight: bold;">
+                    Number of available clubs:
+                    <span class="passClubs" style="font-style: italic;"
+                          th:if="${passes.get(id).getAvailableClubsNumber() == 0}"
+                          th:text="' All clubs'"></span>
+                    <span class="passClubs" style="font-style: italic;"
+                          th:if="${passes.get(id).getAvailableClubsNumber() > 0}"
+                          th:text="' ' + ${passes.get(id).getEntryNumber()}"></span>
+                </div>
+                <div style="font-size: 24px; font-weight: bold;">
+                    Number of entries:
+                    <span class="passEntrances" style="font-style: italic;"
+                          th:if="${passes.get(id).getEntryNumber() == 0}"
+                          th:text="' Unlimited'"></span>
+                    <span class="passEntrances" style="font-style: italic;"
+                          th:if="${passes.get(id).getEntryNumber() > 0}"
+                          th:text="' ' + ${passes.get(id).getEntryNumber()}"></span>
+                </div>
+                <br>
+                <a th:if="${user.getRoleName() == 'USER'}" id=idForward class="btn btn-info"
+                   th:href="@{/passes/save(id=${id})}">Click here to buy this pass.</a>
+            </div>
+        </div>
+    </div>
+    <div style="height: 25%; width: 60%; background-color: #a6a6a6; border-radius: 10px; overflow-x: auto; overflow-y: hidden; white-space: nowrap;">
+        <img th:each="pass, passIndex : ${passes}"
+             th:src="${pass.getImgUrl()}"
+             style="width: 17%; height: 90%; margin: 1%; border-radius: 7px; cursor: pointer;"
+             th:attr="data-imgUrl=${pass.getImgUrl()}, data-name=${pass.getName()}, data-description=${pass.getDescription()}, data-id=${pass.getId()}, data-price=${pass.getPrice()}, data-clubs=${pass.getAvailableClubsNumber()}, data-entrances=${pass.getEntryNumber()}"
+             onclick="changeImageAndDescription(this)"/>
+    </div>
+</div>
+
+<script>
+    function changeImageAndDescription(element) {
+        var imgUrl = element.getAttribute("data-imgUrl");
+        var name = element.getAttribute("data-name");
+        var description = element.getAttribute("data-description");
+        var price = element.getAttribute("data-price");
+        var clubs = element.getAttribute("data-clubs");
+        if (clubs === "0") {
+            clubs = "All clubs";
+        }
+        var entrances = element.getAttribute("data-entrances");
+        if (entrances === "0") {
+            entrances = "Unlimited";
+        }
+        var id = element.getAttribute("data-id");
+
+        document.getElementById("passImage").src = imgUrl;
+        document.getElementById("passName").innerText = name;
+        document.getElementById("passDescription").innerText = description;
+        document.getElementById("passPrice").innerText = price + 'zł';
+
+        var passClubsElements = document.getElementsByClassName("passClubs");
+        for (var i = 0; i < passClubsElements.length; i++) {
+            passClubsElements[i].innerText = clubs;
+        }
+
+        var passEntrancesElements = document.getElementsByClassName("passEntrances");
+        for (var j = 0; j < passEntrancesElements.length; j++) {
+            passEntrancesElements[j].innerText = entrances;
+        }
+
+        document.getElementById("idForward").href = "http://localhost:8080/ps/passes/save?id=" + id;
+    }
+
+</script>
+</body>
+</html>
