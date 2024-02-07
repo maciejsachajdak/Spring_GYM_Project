@@ -13,16 +13,15 @@ This is simple project in Java Spring Boot, which allows to simulate real Gym Ap
 * Thymeleaf
 
 ## How to deploy this project:
-First you have download 
 
 ## About project:
 ### To check funcionality of the project please use one of the accounts below:
          Basic user:
-            Login: andrzej
-            Password: Andrzej123!
+            Login: darek
+            Password: Darek123!
          Admin user:
             Login: janWianek
-            Password: Wianek123!
+            Password: Janek123!
 * On the start page we have login panel where we need to log in into admin or basic user account, if we dont have account we can go to register page and create new account.
 
 * On the registration page, we provide necessary information to create an account, including a unique login, email and a password that must meet security requirements. In case any of the previously mentioned conditions are not met or if any other fields are left incomplete, an appropriate message will be displayed, informing about the missing or incorrect information.
