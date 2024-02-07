@@ -11,6 +11,8 @@ This is simple project in Java Spring Boot, which allows to simulate real Gym Ap
 * Gradle
 * Spring security
 * Thymeleaf
+* html/css
+* javascript
 
 ## How to deploy this project:
 First you must click Code option in the top right corner above list of the files. Then you must copy the URL to this repository
