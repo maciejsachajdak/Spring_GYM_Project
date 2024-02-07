@@ -23,9 +23,10 @@ This is the simple project in Java Spring Boot, which allows to simulate real Gy
 
   ![image](https://github.com/maciejsachajdak/Spring_GYM_Project/assets/119767371/32733e73-55d2-434e-a2fa-32a615b3ab1d)
 
-* Now you need to download kafka If you don't have it on your computer.
-         https://youtu.be/EUzH9khPYgs?si=rl1sxHkl971KmDG5         - we use this tutorial
-* Next step you nee do start Zookeeper and Kafka Server
+* Now you need to download kafka If you don't have it on your computer. We used tutorial below:
+  
+         https://youtu.be/EUzH9khPYgs?si=rl1sxHkl971KmDG5          
+* Next step you need do start Zookeeper and Kafka Server
                   * You need to open two terminals: one for Zookeeper and second one for Kafka Server and paste this commands:
   
          For Zookeeper:
