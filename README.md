@@ -15,7 +15,13 @@ This is simple project in Java Spring Boot, which allows to simulate real Gym Ap
 * javascript
 
 ## How to deploy this project:
-First you must click Code option in the top right corner above list of the files. Then you must copy the URL to this repository
+* First you must click Code option in the top right corner above list of the files. Then you must copy the URL to this repository.
+* Next step you need to open Java IDE, we suggest Intellij IDEA, and choose option "Get from Version Control", paste the URL to repository and choose folder where you want to deploy project.
+* If you open the project, you need to click "Load Gradle Project"
+* Now you need to download kafka If you don't have it on your computer.
+         https://youtu.be/EUzH9khPYgs?si=rl1sxHkl971KmDG5         - we use this tutorial
+* Next step you nee do start Zookeeper and Kafka Server
+*
 
 ## About project:
 ### To check funcionality of the project please use one of the accounts below:
