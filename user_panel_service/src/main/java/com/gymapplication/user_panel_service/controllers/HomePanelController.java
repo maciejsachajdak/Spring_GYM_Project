@@ -220,11 +220,13 @@ public class HomePanelController {
         UserDto userAdmin = userService.loadLastLoggedUser();
         model.addAttribute("login", login);
         model.addAttribute("userAdmin", userAdmin);
+        UserDto user = new UserDto();
+        model.addAttribute("user", user);
         return "deleteUser";
     }
 
     @PostMapping("/up/deleteUser/confirm")
-    public String deleteUser(@ModelAttribute(name = "login") String login, @Valid @ModelAttribute("userToDelete") UserDto user, BindingResult result, Model model) {
+    public String deleteUser(@ModelAttribute(name = "login") String login, @Valid @ModelAttribute("user") UserDto user, BindingResult result, Model model) {
         UserDto userAdmin = userService.loadLastLoggedUser();
         model.addAttribute("userAdmin", userAdmin);
 
@@ -233,7 +235,7 @@ public class HomePanelController {
         }
 
         if (result.hasFieldErrors("oldPassword")) {
-            model.addAttribute("userToDelete", user);
+            model.addAttribute("user", user);
             return "deleteUser";
         }
 

@@ -61,11 +61,11 @@
                    id="oldPassword"
                    name="oldPassword"
                    placeholder="Enter password"
-                   th:field="*{userAdmin.oldPassword}"
+                   th:field="*{user.oldPassword}"
                    type="password"
             />
-            <p th:errors="*{userAdmin.oldPassword}" class="text-danger"
-               th:if="${#fields.hasErrors('userAdmin.oldPassword')}">
+            <p th:errors="*{user.oldPassword}" class="text-danger"
+               th:if="${#fields.hasErrors('user.oldPassword')}">
             </p>
         </div>
         <div class="form-group mb-3 d-flex">

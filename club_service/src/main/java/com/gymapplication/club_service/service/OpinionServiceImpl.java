@@ -1,13 +1,10 @@
 package com.gymapplication.club_service.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gymapplication.club_service.dto.OpinionDto;
 import com.gymapplication.club_service.entity.Club;
 import com.gymapplication.club_service.entity.Opinion;
+import com.gymapplication.club_service.repository.ClubRepository;
 import com.gymapplication.club_service.repository.OpinionRepository;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -17,9 +14,11 @@ import java.util.List;
 @Service
 public class OpinionServiceImpl implements OpinionService {
     private final OpinionRepository opinionRepository;
+    private final ClubRepository clubRepository;
 
-    public OpinionServiceImpl(OpinionRepository opinionRepository) {
+    public OpinionServiceImpl(OpinionRepository opinionRepository, ClubRepository clubRepository) {
         this.opinionRepository = opinionRepository;
+        this.clubRepository = clubRepository;
     }
 
     @Override
@@ -32,6 +31,13 @@ public class OpinionServiceImpl implements OpinionService {
         opinion.setClub(club);
 
         opinionRepository.save(opinion);
+
+        Club clubFromRepo = clubRepository.findById(club.getId().intValue());
+        List<Opinion> allOpinionToClub = opinionRepository.findAllByClubId(club.getId());
+        double averageRate = allOpinionToClub.stream().mapToDouble(Opinion::getRate).average().orElse(0.0);
+        double roundedAverageRate = Math.round(averageRate * 100.0) / 100.0;
+        clubFromRepo.setAverageRate(roundedAverageRate);
+        clubRepository.save(clubFromRepo);
     }
 
     @Override
