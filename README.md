@@ -35,4 +35,8 @@ This is simple project in Java Spring Boot, which allows to simulate real Gym Ap
 
 * On the registration page, we provide necessary information to create an account, including a unique login, email and a password that must meet security requirements. In case any of the previously mentioned conditions are not met or if any other fields are left incomplete, an appropriate message will be displayed, informing about the missing or incorrect information.
 
-* After logging in, we are redirected to the welcome page. From there we can full
+* After logging in, we are redirected to the main page that welcomes us. On this page, we hav top panel that allow us to go to clubs page, passes page, we can go into our account page and we can logout. If we are on the administrator's account, we also have the option to go to the page displaying users.
+
+* In the user panel, we can view information about our account, make changes to it, including changing our password, and delete the entire account. We also can display informations about our pass and club (if we have one assigned).
+
+* In the club section, we can view our clubs, description and . We can also add reviews, which involves selecting a rating from 1 to 5 and providing a textual opinion. The administrator does not have access to adding reviews.
