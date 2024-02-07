@@ -27,7 +27,8 @@ This is the simple project in Java Spring Boot, which allows to simulate real Gy
   
          https://youtu.be/EUzH9khPYgs?si=rl1sxHkl971KmDG5          
 * Next step you need to start Zookeeper and Kafka Server
-                  * You need to open two terminals: one for Zookeeper and second one for Kafka Server and paste this commands:
+  
+         You need to open two terminals: one for Zookeeper and second one for Kafka Server and paste this commands:
   
          For Zookeeper:
                   cd C:/kafka
