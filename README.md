@@ -11,7 +11,7 @@ This is the simple project in Java Spring Boot, which allows to simulate real Gy
 * Gradle
 * Spring security
 * Thymeleaf
-* html/css
+* HTML/CSS
 * javascript
 
 ## How to deploy this project:
